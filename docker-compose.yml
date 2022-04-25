@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  laravel_roles_livewire_powergrid_docker:
+    build: Laravel-Roles-Livewire-Powergrid-Docker/
+    container_name: laravel_roles_livewire_powergrid_docker
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    ports:
+      - 8080:80
+    links:
+      - laravel_roles_livewire_powergrid_docker_db
+    environment:
+      TZ: Europe/Kiev
+
+  laravel_roles_livewire_powergrid_docker_db:
+    image: mariadb
+    container_name: laravel_roles_livewire_powergrid_docker_db
+    restart: always
+    volumes:
+#      - ${DB_PATH_HOST}:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    ports:
+      - 6080:3306
+    environment:
+      TZ: Europe/Kiev
+      MYSQL_ROOT_PASSWORD: 123123
+      MYSQL_DATABASE: laravel_roles_livewire_powergrid_docker
+      MYSQL_USER: egor
+      MYSQL_PASSWORD: 123123
