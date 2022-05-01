@@ -20,3 +20,7 @@ echo -e "Generating app key  ... \n"
 cp /var/www/html/.env.example /var/www/html/.env
 chmod 777 /var/www/html/.env
 php artisan key:generate
+
+echo -e "Run project  ... \n"
+npm run development
+php artisan migrate:fresh --seed
